@@ -12,7 +12,7 @@ const theme = {
   ],
   fonts: {
     body: '"Roboto Condensed", sans-serif',
-    heading: '"Roboto Mono", monospace',
+    heading: '"Roboto Condensed", sans-serif',
     monospace: '"Roboto Slab", serif'
   },
   fontSizes: [

@@ -1,10 +1,10 @@
 /** @jsxImportSource theme-ui */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
 import { Flex } from 'theme-ui';
 import { todoAppNavigation } from '../../helpers/createNavigation/todoAppNavigation';
 import Logo from '../Logo/Logo';
+import Link from '../Link/Link';
 
 type NavigationTemplateProps = {
   createNavigation: { name: string; route: string }[];
@@ -22,27 +22,19 @@ const NavigationTemplate: React.FC<NavigationTemplateProps> = ({
         top: 0,
         left: 0,
         width: '100%',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         alignItems: 'center'
       }}
     >
-      <NavLink sx={{ variant: 'text.nav' }} exact to="/">
-        {/* <Logo /> */}
-      </NavLink>
+      <Logo />
       {createNavigation.map((link) => {
         return (
-          <NavLink
-            sx={{ variant: 'text.nav' }}
-            key={link.route}
-            to={link.route}
-          >
+          <Link key={link.route} navTo={link.route}>
             {link.name}
-          </NavLink>
+          </Link>
         );
       })}
-      <NavLink sx={{ variant: 'text.nav' }} to="homepage">
-        Wyloguj się
-      </NavLink>
+      <Link navTo="/homepage">Wyloguj się</Link>
     </Flex>
   );
 };
