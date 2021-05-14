@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import React from 'react';
 import { Themed } from 'theme-ui';
+import LoginContainer from '../LoginContainer/LoginContainer';
 
 const HeaderHomePageLogin: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const HeaderHomePageLogin: React.FC = () => {
       >
         <Themed.h1>Check It</Themed.h1>
         <Themed.h2>Do It</Themed.h2>
+        <LoginContainer />
       </div>
     </div>
   );

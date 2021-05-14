@@ -42,6 +42,17 @@ const theme = {
     secondary: '#f7b733',
     muted: '#dfdce3'
   },
+  buttons: {
+    action: {
+      fontWeight: 'bold',
+      color: 'white',
+      bg: 'primary',
+      transition: '.5s linear',
+      '&:hover': {
+        boxShadow: '1px 1px 5px 0px black'
+      },
+    },
+  },
   text: {
      nav: { color: 'text', textDecoration: 'none',
      fontSize: [0, 3]}
