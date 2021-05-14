@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+/* eslint-disable react/jsx-pascal-case */
 import { Themed } from '@theme-ui/mdx';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as NavLogo } from '../../assets/logo/Saly-26Logo.svg';

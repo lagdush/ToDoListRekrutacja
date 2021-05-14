@@ -5,11 +5,13 @@ import { NavLink } from 'react-router-dom';
 type LinkProps = {
   children: string;
   navTo: string;
+  onClick?: () => void;
 };
 
-const Link: React.FC<LinkProps> = ({ navTo, children }) => {
+const Link: React.FC<LinkProps> = ({ navTo, children, onClick }) => {
   return (
     <NavLink
+      onClick={onClick}
       to={navTo}
       exact
       sx={{

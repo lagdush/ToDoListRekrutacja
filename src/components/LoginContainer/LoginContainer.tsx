@@ -1,27 +1,30 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Button, Input, Label, Spinner } from '@theme-ui/components';
-import { userTodosList } from '../../recoilStore/store';
+import {
+  userTodosListAtom,
+  currentUserIdAtom
+} from '../../recoilStore/atoms';
 import Wrapper from './Wrapper';
 
 const LoginContainer: React.FC = () => {
-  const [userTodos, setUserTodos] = useRecoilState(userTodosList);
+  const [, setUserTodos] = useRecoilState(userTodosListAtom);
+  const [currentUserId, setCurrentUserId] = useRecoilState(currentUserIdAtom);
   const [isLoading, setLoading] = useState(false);
-  const inputRef = useRef<string>();
   const history = useHistory();
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    inputRef.current = e.target.value;
+    setCurrentUserId(e.target.value);
   };
 
   const getDataFromApi = async (inputData: string | undefined) => {
-    if (!inputData) {
-      return;
-    }
     try {
+      if (!inputData) {
+        return;
+      }
       const rawDataFromApi = await fetch(
         `https://gorest.co.in//public-api/users/${inputData}/todos`
       );
@@ -30,15 +33,11 @@ const LoginContainer: React.FC = () => {
       const userTodoList = dataFromApi.data;
       setUserTodos([...userTodoList]);
       setLoading(false);
+      history.push('/homepage');
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    //  userTodos && history.push('/homepage');
-    console.log(userTodos);
-  }, [userTodos, history]);
 
   return isLoading ? (
     <Spinner
@@ -47,7 +46,7 @@ const LoginContainer: React.FC = () => {
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: 'trasnlate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)'
       }}
     />
   ) : (
@@ -74,7 +73,7 @@ const LoginContainer: React.FC = () => {
           onChange={inputHandler}
         />
       </Label>
-      <Button variant="action" onClick={() => getDataFromApi(inputRef.current)}>
+      <Button variant="action" onClick={() => getDataFromApi(currentUserId)}>
         Zaloguj się
       </Button>
     </Wrapper>

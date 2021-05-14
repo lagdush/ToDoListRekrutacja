@@ -4,6 +4,7 @@ import theme from '../theme/toDoAppTheme';
 import Navigation from '../components/Navigation/Navigation';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../components/HomePage/HomePage';
+import LogedUserHomePage from '../components/LogedUserHomePage/LogedUserHomePage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         </Route>
         <Navigation>
           <Route path="/homepage" exact>
-            <p>Dom</p>
+            <LogedUserHomePage />
           </Route>
           <Route path="/new-task" exact>
             <p>Nowe zadanie</p>

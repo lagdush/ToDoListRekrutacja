@@ -2,6 +2,8 @@
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { Flex } from 'theme-ui';
+import { userTodosListAtom } from '../../recoilStore/atoms';
+import { useRecoilState } from 'recoil';
 import { todoAppNavigation } from '../../helpers/createNavigation/todoAppNavigation';
 import Logo from '../Logo/Logo';
 import Link from '../Link/Link';
@@ -13,29 +15,41 @@ type NavigationTemplateProps = {
 const NavigationTemplate: React.FC<NavigationTemplateProps> = ({
   createNavigation
 }) => {
+  const [, setUserTodos] = useRecoilState(userTodosListAtom);
+
+  const logout = () => {
+    setUserTodos([]);
+  };
   return (
-    <Flex
-      bg="primary"
-      p={4}
+    <nav
       sx={{
         position: 'sticky',
-        top: 0,
-        left: 0,
-        width: '100%',
-        justifyContent: 'space-around',
-        alignItems: 'center'
+        top: '0',
+        left: '0',
+        padding: '16px',
+        backgroundColor: 'primary'
       }}
     >
-      <Logo />
-      {createNavigation.map((link) => {
-        return (
-          <Link key={link.route} navTo={link.route}>
-            {link.name}
-          </Link>
-        );
-      })}
-      <Link navTo="/">Wyloguj się</Link>
-    </Flex>
+      <Flex
+        sx={{
+          width: '100%',
+          justifyContent: 'space-around',
+          alignItems: 'center'
+        }}
+      >
+        <Logo />
+        {createNavigation.map((link) => {
+          return (
+            <Link key={link.route} navTo={link.route}>
+              {link.name}
+            </Link>
+          );
+        })}
+        <Link onClick={logout} navTo="/">
+          Wyloguj się
+        </Link>
+      </Flex>
+    </nav>
   );
 };
 

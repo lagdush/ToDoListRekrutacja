@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource theme-ui */
 import React from 'react';
 import { Themed } from 'theme-ui';
