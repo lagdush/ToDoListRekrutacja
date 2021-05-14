@@ -3,16 +3,17 @@ import { ThemeProvider } from 'theme-ui';
 import theme from '../theme/toDoAppTheme';
 import Navigation from '../components/Navigation/Navigation';
 import { Route, Switch } from 'react-router-dom';
+import HomePage from '../components/HomePage/HomePage';
 
 function App() {
   return (
     // @ts-ignore
     <ThemeProvider theme={theme}>
-      <Navigation>
-        <Switch>
-          <Route path="/homepage" exact>
-            <p>STRONA DOMOWA Z LOGOWANIEM</p>
-          </Route>
+      <Switch>
+        <Route path="/homepage" exact>
+          <HomePage />
+        </Route>
+        <Navigation>
           <Route path="/" exact>
             <p>Dom</p>
           </Route>
@@ -25,8 +26,8 @@ function App() {
           <Route path="/task-summary" exact>
             <p>Statystyki</p>
           </Route>
-        </Switch>
-      </Navigation>
+        </Navigation>
+      </Switch>
     </ThemeProvider>
   );
 }
