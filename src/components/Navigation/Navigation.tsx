@@ -34,7 +34,7 @@ const NavigationTemplate: React.FC<NavigationTemplateProps> = ({
           </Link>
         );
       })}
-      <Link navTo="/homepage">Wyloguj się</Link>
+      <Link navTo="/">Wyloguj się</Link>
     </Flex>
   );
 };

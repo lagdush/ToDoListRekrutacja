@@ -1,22 +1,15 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { atom, useRecoilState } from 'recoil';
-import { Button, Input, Label } from '@theme-ui/components';
-import { DataFromApi } from '../../models/dataFromApi';
+import { useRecoilState } from 'recoil';
+import { Button, Input, Label, Spinner } from '@theme-ui/components';
+import { userTodosList } from '../../recoilStore/store';
 import Wrapper from './Wrapper';
 
-type LoginContainerProps = {};
-
-const LoginContainer: React.FC<LoginContainerProps> = () => {
-  const userTodosList = atom({
-    key: 'userTodos',
-    default: [] as DataFromApi[]
-  });
-
+const LoginContainer: React.FC = () => {
   const [userTodos, setUserTodos] = useRecoilState(userTodosList);
-
+  const [isLoading, setLoading] = useState(false);
   const inputRef = useRef<string>();
   const history = useHistory();
 
@@ -28,23 +21,36 @@ const LoginContainer: React.FC<LoginContainerProps> = () => {
     if (!inputData) {
       return;
     }
-    const rawDataFromApi = await fetch(
-      `https://gorest.co.in//public-api/users/${inputData}/todos`
-    );
-    console.log('klik');
-    const dataFromApi = await rawDataFromApi.json();
-    const userTodoList = dataFromApi.data;
-    setUserTodos([...userTodoList]);
-    console.log(userTodos);
+    try {
+      const rawDataFromApi = await fetch(
+        `https://gorest.co.in//public-api/users/${inputData}/todos`
+      );
+      setLoading(true);
+      const dataFromApi = await rawDataFromApi.json();
+      const userTodoList = dataFromApi.data;
+      setUserTodos([...userTodoList]);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-
-
   useEffect(() => {
+    //  userTodos && history.push('/homepage');
     console.log(userTodos);
-  }, [userTodos]);
+  }, [userTodos, history]);
 
-  return (
+  return isLoading ? (
+    <Spinner
+      size={80}
+      sx={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'trasnlate(-50%, -50%)'
+      }}
+    />
+  ) : (
     <Wrapper>
       <Label
         sx={{

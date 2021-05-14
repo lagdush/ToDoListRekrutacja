@@ -10,11 +10,11 @@ function App() {
     // @ts-ignore
     <ThemeProvider theme={theme}>
       <Switch>
-        <Route path="/homepage" exact>
+        <Route path="/" exact>
           <HomePage />
         </Route>
         <Navigation>
-          <Route path="/" exact>
+          <Route path="/homepage" exact>
             <p>Dom</p>
           </Route>
           <Route path="/new-task" exact>

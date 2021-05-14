@@ -8,7 +8,7 @@ type LogoProps = {};
 const Logo: React.FC<LogoProps> = () => {
   return (
     <NavLink
-      to="/"
+      to="/homepage"
       exact
       sx={{
         variant: 'text.nav',
