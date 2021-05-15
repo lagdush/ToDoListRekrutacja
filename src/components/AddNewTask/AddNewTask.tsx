@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource theme-ui */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   currentUserIdAtom,
   currentUserDataAtom,
   userTodosListAtom
 } from '../../recoilStore/atoms';
 import { useRecoilState } from 'recoil';
-import { Button, Flex } from '@theme-ui/components';
+import { Button, Flex, Input } from '@theme-ui/components';
 import { Themed } from '@theme-ui/mdx';
 import InputComponent from '../InputComponent/InputComponent';
 
@@ -15,7 +15,7 @@ type AddNewTaskProps = {};
 
 const AddNewTask: React.FC<AddNewTaskProps> = () => {
   const taskTitle = useRef({ title: '', completed: false });
-
+  const [task, setTask] = useState('');
   const [userTodos, setUserTodos] = useRecoilState(userTodosListAtom);
 
   const [currentUserId] = useRecoilState(currentUserIdAtom);
@@ -96,6 +96,30 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
     }
   };
 
+  const setNewTaskTitle = async (todo_id: number, newTitle: string) => {
+    try {
+      const rawDataFromApi = await fetch(
+        `https://gorest.co.in/public-api/todos/${todo_id}`,
+        {
+          method: 'PATCH',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization:
+              'Bearer ' +
+              'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
+          },
+          body: JSON.stringify({
+            title: newTitle
+          })
+        }
+      );
+      getActualUserTodos(currentUserId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const getUserDataFromApi = async (userId: string | undefined) => {
       try {
@@ -126,31 +150,6 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
           alignItems: 'center'
         }}
       >
-        {/* oddzielny komponent */}
-        {userTodos.map((list) => {
-          if (list.completed) {
-            return null;
-          }
-          return (
-            <div key={list.created_at}>
-              <p
-                sx={{
-                  minHeight: '10vh',
-                  width: '30vw',
-                  border: '1px solid black',
-                  padding: '16px',
-                  marginTop: '2rem'
-                }}
-              >
-                Zadanie: <b>{list.title}</b>
-              </p>
-              <Button onClick={() => setTaskToComplete(list.id)}>
-                Usuń Zadanie
-              </Button>
-            </div>
-          );
-        })}
-
         <InputComponent
           apiRequest={sendNewTask}
           inputHandler={inputHandler}
@@ -159,6 +158,39 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
           buttonText="Dodaj zadanie"
           payload={taskTitle.current}
         />
+        {/* oddzielny komponent */}
+        {userTodos.map((list) => {
+          if (list.completed) {
+            return null;
+          }
+          return (
+            <div key={list.created_at}>
+              <div
+                sx={{
+                  minHeight: '10vh',
+                  width: '30vw',
+                  border: '1px solid black',
+                  padding: '16px',
+                  marginTop: '2rem'
+                }}
+              >
+                Zadanie: <Input onChange={inputHandler} value={list.title} />
+              </div>
+              <Button m={3} onClick={() => setTaskToComplete(list.id)}>
+                Usuń Zadanie
+              </Button>
+
+              <Button
+                m={3}
+                onClick={() =>
+                  setNewTaskTitle(list.id, taskTitle.current.title)
+                }
+              >
+                Zaktualizuj Zadanie
+              </Button>
+            </div>
+          );
+        })}
       </Flex>
     </>
   );
