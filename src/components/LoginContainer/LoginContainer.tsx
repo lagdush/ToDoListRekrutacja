@@ -3,12 +3,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { Button, Input, Label, Spinner } from '@theme-ui/components';
-import {
-  userTodosListAtom,
-  currentUserIdAtom
-} from '../../recoilStore/atoms';
-import Wrapper from './Wrapper';
+import { Spinner } from '@theme-ui/components';
+import { userTodosListAtom, currentUserIdAtom } from '../../recoilStore/atoms';
+import InputComponent from '../InputComponent/InputComponent';
 
 const LoginContainer: React.FC = () => {
   const [, setUserTodos] = useRecoilState(userTodosListAtom);
@@ -50,33 +47,12 @@ const LoginContainer: React.FC = () => {
       }}
     />
   ) : (
-    <Wrapper>
-      <Label
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: '16px'
-        }}
-      >
-        Podaj swoje ID
-        <Input
-          m={3}
-          sx={{
-            textAlign: 'center',
-            color: 'primary',
-            backgroundColor: 'muted',
-            padding: '10px 15px'
-          }}
-          onChange={inputHandler}
-        />
-      </Label>
-      <Button variant="action" onClick={() => getDataFromApi(currentUserId)}>
-        Zaloguj się
-      </Button>
-    </Wrapper>
+    <InputComponent
+      apiRequest={getDataFromApi}
+      inputHandler={inputHandler}
+      currentUserId={currentUserId}
+      label="Podaj swoje ID"
+    />
   );
 };
 
