@@ -5,7 +5,7 @@ import Navigation from '../components/Navigation/Navigation';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../components/HomePage/HomePage';
 import LogedUserHomePage from '../components/LogedUserHomePage/LogedUserHomePage';
-import AddNewTask from '../components/AddNewTask/AddNewTask';
+import UserTaskManager from './UserTaskManager/UserTaskManager';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <LogedUserHomePage />
           </Route>
           <Route path="/new-task" exact>
-            <AddNewTask />
+            <UserTaskManager />
           </Route>
         </Navigation>
       </Switch>
