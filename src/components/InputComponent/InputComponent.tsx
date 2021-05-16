@@ -19,8 +19,6 @@ type InputComponentProps = {
   label: string;
 
   buttonText?: string;
-
-  payload?: any;
 };
 
 const InputComponent: React.FC<InputComponentProps> = ({
@@ -29,7 +27,6 @@ const InputComponent: React.FC<InputComponentProps> = ({
   currentUserId,
   label,
   buttonText = 'Zaloguj się',
-  payload,
 }) => {
   return (
     <Wrapper>
@@ -57,7 +54,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
       </Label>
       <Button
         variant="action"
-        onClick={() => apiRequest(currentUserId, payload)}
+        onClick={() => apiRequest(currentUserId)}
       >
         {buttonText}
       </Button>

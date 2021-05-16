@@ -2,10 +2,10 @@
 /** @jsxImportSource theme-ui */
 import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { Themed } from 'theme-ui';
+import { Box, Button, Flex, Input, Label, Themed } from 'theme-ui';
 import {
   currentUserDataAtom,
-  currentUserIdAtom,
+  currentUserIdAtom
 } from '../../recoilStore/atoms';
 import InputComponent from '../InputComponent/InputComponent';
 
@@ -29,20 +29,17 @@ const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
       if (!userId) {
         return;
       }
-      await fetch(
-        `https://gorest.co.in/public-api/users/${userId}/todos`,
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization:
-              'Bearer ' +
-              'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
-          },
-          body: JSON.stringify(payload)
-        }
-      );
+      await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer ' +
+            'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
+        },
+        body: JSON.stringify(payload)
+      });
       getActualUserTodos(currentUserId);
     } catch (error) {
       console.log(error);
@@ -50,19 +47,57 @@ const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
   };
 
   return (
-    <div>
-      <Themed.h1>{`Witaj ${currentUserData.name}`}</Themed.h1>
-
-      <Themed.h2>Dodaj zadanie</Themed.h2>
-      <InputComponent
-        apiRequest={sendNewTask}
-        inputHandler={inputHandler}
-        currentUserId={currentUserId}
-        label="Tytuł Zadania"
-        buttonText="Dodaj zadanie"
-        payload={taskTitle.current}
-      />
-    </div>
+    <Flex sx={{ justifyContent: 'center', alignItems: 'center' }}>
+      <Box
+        sx={{
+          maxWidth: 768,
+          mx: 'auto',
+          px: 3,
+          py: 4
+        }}
+      >
+        <Themed.h1>{`Witaj ${currentUserData.name}`}</Themed.h1>
+        <Flex
+          sx={{
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems:'center',
+            maxWidth: 768,
+            mx: 'auto',
+            px: 3,
+            py: 4
+          }}
+        >
+          <Label
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '16px'
+            }}
+          >
+            Tytuł Zadania
+            <Input
+              m={3}
+              sx={{
+                textAlign: 'center',
+                color: 'primary',
+                backgroundColor: 'muted',
+                padding: '10px 15px'
+              }}
+              onChange={inputHandler}
+            />
+          </Label>
+          <Button
+            variant="action"
+            onClick={() => sendNewTask(currentUserId, taskTitle.current)}
+          >
+            Dodaj zadanie
+          </Button>
+        </Flex>
+      </Box>
+    </Flex>
   );
 };
 

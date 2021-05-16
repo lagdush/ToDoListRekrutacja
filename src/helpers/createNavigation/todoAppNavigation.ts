@@ -1,3 +1,3 @@
 export const todoAppNavigation= [
-  { name: 'Nowe Zadanie', route: 'new-task' },
+  { name: 'Podsumowanie', route: 'task-summary' },
 ];

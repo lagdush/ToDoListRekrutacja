@@ -3,7 +3,7 @@ const theme = {
     0,
     4,
     8,
-    16,
+    25,
     32,
     64,
     128,
@@ -69,21 +69,24 @@ const theme = {
       lineHeight: 'heading',
       fontWeight: 'heading',
       fontSize: 5,
-      textAlign: 'center'
+      textAlign: 'center',
     },
     h2: {
       color: 'text',
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      fontSize: 4
+      fontSize: 4,
+      textAlign: 'center',
+      margin: '1em'
     },
     h3: {
       color: 'text',
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      fontSize: 3
+      fontSize: 3,
+      textAlign: 'center'
     },
     p: {
       color: 'text',

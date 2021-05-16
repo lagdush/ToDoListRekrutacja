@@ -1,11 +1,11 @@
-import React from 'react';
+
 import { ThemeProvider } from 'theme-ui';
 import theme from '../theme/toDoAppTheme';
 import Navigation from '../components/Navigation/Navigation';
 import { Route, Switch } from 'react-router-dom';
-import HomePage from '../components/HomePage/HomePage';
-import LogedUserHomePage from '../components/LogedUserHomePage/LogedUserHomePage';
 import UserTaskManager from './UserTaskManager/UserTaskManager';
+import LoginPage from '../components/LoginPage/HomePage';
+import TaskSummary from '../components/TaskSummary/TaskSummary';
 
 function App() {
   return (
@@ -13,14 +13,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <Switch>
         <Route path="/" exact>
-          <HomePage />
+          <LoginPage />
         </Route>
         <Navigation>
-          <Route path="/homepage" exact>
-            <LogedUserHomePage />
-          </Route>
-          <Route path="/new-task" exact>
+          <Route path="/homepage">
             <UserTaskManager />
+          </Route>
+          <Route path="/task-summary">
+            <TaskSummary />
           </Route>
         </Navigation>
       </Switch>

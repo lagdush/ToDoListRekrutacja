@@ -3,9 +3,9 @@ import Container from './Container';
 import HeaderHomePageLogin from './HeaderHomePageLogin';
 import HomePageLogo from './HomePageLogo';
 
-type HomePageProps = {};
+type LoginPageProps = {};
 
-const HomePage: React.FC<HomePageProps> = () => {
+const LoginPage: React.FC<LoginPageProps> = () => {
   return (
     <Container>
       <HomePageLogo />
@@ -14,4 +14,4 @@ const HomePage: React.FC<HomePageProps> = () => {
   );
 };
 
-export default HomePage;
+export default LoginPage;

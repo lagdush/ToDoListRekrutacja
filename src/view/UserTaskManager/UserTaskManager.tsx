@@ -7,21 +7,19 @@ import {
   userTodosListAtom
 } from '../../recoilStore/atoms';
 import { useRecoilState } from 'recoil';
-import { Flex} from '@theme-ui/components';
-import { Themed } from '@theme-ui/mdx';
-import TaskSummary from '../../components/TaskSummary/TaskSummary';
+import { Flex } from '@theme-ui/components';
 import SearchTask from '../../components/SearchTask/SearchTask';
 import AddTask from '../../components/AddTask/AddTask';
 import ActiveTasks from '../../components/ActiveTasks/ActiveTasks';
 import InactiveTasks from '../../components/InactiveTasks/InactiveTasks';
+import { Box } from 'theme-ui';
 
 type UserTaskManagerProps = {};
 
 const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
   const [userTodos, setUserTodos] = useRecoilState(userTodosListAtom);
   const [currentUserId] = useRecoilState(currentUserIdAtom);
-  const [, setCurrentUserData] =
-    useRecoilState(currentUserDataAtom);
+  const [, setCurrentUserData] = useRecoilState(currentUserDataAtom);
 
   useEffect(() => {
     const getUserDataFromApi = async (userId: string | undefined) => {
@@ -59,20 +57,20 @@ const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
   };
 
   return (
-    <>
-      <Flex
+    <Flex
+      sx={{
+        flexWrap: 'wrap'
+      }}
+    >
+      <Box
+        bg="secondary"
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-          alignItems: 'center'
+          flexGrow: 1,
+          flexBasis: '30%',
+          borderRight: '5px solid #fc4a1a',
+          minHeight: '100vh'
         }}
       >
-        <AddTask getActualUserTodos={getActualUserTodos} />
-        <TaskSummary />
-        <SearchTask />
-
-        <Themed.h2>Twoja Lista zadań: </Themed.h2>
         <ActiveTasks
           getActualUserTodos={getActualUserTodos}
           userTodos={userTodos}
@@ -83,8 +81,19 @@ const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
           userTodos={userTodos}
           currentUserId={currentUserId}
         />
-      </Flex>
-    </>
+      </Box>
+      <Box
+        sx={{
+          p: 3,
+          flexGrow: 9,
+          flexBasis: 0,
+          minWidth: 320
+        }}
+      >
+        <AddTask getActualUserTodos={getActualUserTodos} />
+        <SearchTask />
+      </Box>
+    </Flex>
   );
 };
 

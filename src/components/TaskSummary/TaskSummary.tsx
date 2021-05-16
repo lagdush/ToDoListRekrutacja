@@ -18,9 +18,12 @@ const TaskSummary: React.FC<TaskSummaryProps> = () => {
       }}
     >
       <h2>Twoje Zadania</h2>
-      <p>Masz łącznie {userTodos.length} zadań</p>
-      <p>Do tej pory wykonałeś {completedTasks.length} zadania</p>
-      <p>Masz {activeTasks.length} zadań do wykonania</p>
+      <p>Do tej pory wykonałeś {completedTasks.length} zadania.</p>
+      {activeTasks.length === 0 ? (
+        <p>Możesz odpocząć, nie masz żadnych pilnych zadań do wykonania.</p>
+      ) : (
+        <p>Aktualnie masz {activeTasks.length} aktywnych zadań do wykonania.</p>
+      )}
     </Flex>
   );
 };

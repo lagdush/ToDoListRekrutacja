@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource theme-ui */
 import React from 'react';
-import { Themed, Button } from 'theme-ui';
+import { Themed, Button, Flex } from 'theme-ui';
 import { DataFromApi } from '../../models/dataFromApi';
 
 type ActiveTasksProps = {
@@ -37,32 +37,51 @@ const ActiveTasks: React.FC<ActiveTasksProps> = ({
   };
 
   return (
-    <>
+    <Flex
+      mt={3}
+      mb={3}
+      sx={{
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderBottom: '5px solid #fc4a1a',
+        minHeight: '50%'
+      }}
+    >
       <Themed.h2>Aktywne zadania: </Themed.h2>
       {userTodos.map((list) => {
         if (list.completed) {
           return null;
         }
         return (
-          <div key={list.created_at}>
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+            key={list.created_at}
+          >
             <div
               sx={{
-                minHeight: '10vh',
-                width: '30vw',
-                border: '1px solid black',
-                padding: '16px',
-                marginTop: '2rem'
+                padding: '25px',
+                margin: '1em'
               }}
             >
-              <p>Zadanie: {list.title}</p>
+              <p >
+                <strong>Zadanie: </strong>
+                {list.title}
+              </p>
             </div>
-            <Button m={3} onClick={() => setTaskToComplete(list.id)}>
+            <Button m={'1em'} p={2} onClick={() => setTaskToComplete(list.id)}>
               Zakończ zadanie
             </Button>
-          </div>
+          </Flex>
         );
       })}
-    </>
+    </Flex>
   );
 };
 

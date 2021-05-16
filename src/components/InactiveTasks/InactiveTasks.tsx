@@ -2,7 +2,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from 'react';
-import { Themed, Button } from 'theme-ui';
+import { Themed, Button, Flex } from 'theme-ui';
 import { DataFromApi } from '../../models/dataFromApi';
 
 type InactiveTasksProps = {
@@ -16,7 +16,6 @@ const InactiveTasks: React.FC<InactiveTasksProps> = ({
   userTodos,
   currentUserId
 }) => {
-
   const deleteTask = async (todo_id: number) => {
     try {
       await fetch(`https://gorest.co.in/public-api/todos/${todo_id}`, {
@@ -35,19 +34,33 @@ const InactiveTasks: React.FC<InactiveTasksProps> = ({
     }
   };
   return (
-    <>
+    <Flex
+      mt={3}
+      mb={3}
+      sx={{
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      }}
+    >
       <Themed.h2>Zakończone zadania: </Themed.h2>
       {userTodos.map((list) => {
         if (!list.completed) {
           return null;
         }
         return (
-          <div key={list.created_at}>
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+            key={list.created_at}
+          >
             <div
               sx={{
-                minHeight: '10vh',
-                width: '30vw',
-                border: '1px solid black',
                 padding: '16px',
                 marginTop: '2rem'
               }}
@@ -58,10 +71,10 @@ const InactiveTasks: React.FC<InactiveTasksProps> = ({
             <Button m={3} onClick={() => deleteTask(list.id)}>
               Usuń Zadanie
             </Button>
-          </div>
+          </Flex>
         );
       })}
-    </>
+    </Flex>
   );
 };
 
