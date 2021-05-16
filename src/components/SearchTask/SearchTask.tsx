@@ -15,10 +15,14 @@ const SearchTask: React.FC<SearchTaskProps> = () => {
   const [modalContent, setModalContent] = useState<DataFromApi[]>();
 
   const findTask = (title: string) => {
-    const searchTask = userTodos.filter((todo) => todo.title === title);
+    const searchTask = userTodos.filter(
+      (todo) => todo.title.toLowerCase() === title.toLowerCase()
+    );
     setModalContent(searchTask);
     handleOpenModal()
   };
+
+  
   const searchedTaskTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     taskToFind.current = e.target.value;
   };

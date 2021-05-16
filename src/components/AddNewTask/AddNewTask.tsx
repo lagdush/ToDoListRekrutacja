@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource theme-ui */
-import React, { useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   currentUserIdAtom,
   currentUserDataAtom,
@@ -67,7 +67,6 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
         }
       );
       const dataFromApi = await rawDataFromApi.json();
-      console.log(dataFromApi);
       getActualUserTodos(currentUserId);
     } catch (error) {
       console.log(error);
@@ -76,46 +75,37 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
 
   const setTaskToComplete = async (todo_id: number) => {
     try {
-      await fetch(
-        `https://gorest.co.in/public-api/todos/${todo_id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization:
-              'Bearer ' +
-              'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
-          },
-          body: JSON.stringify({
-            completed: true
-          })
-        }
-      );
+      await fetch(`https://gorest.co.in/public-api/todos/${todo_id}`, {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer ' +
+            'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
+        },
+        body: JSON.stringify({
+          completed: true
+        })
+      });
       getActualUserTodos(currentUserId);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updateTask = async (todo_id: number, newTitle: string) => {
+  const deleteTask = async (todo_id: number) => {
     try {
-      await fetch(
-        `https://gorest.co.in/public-api/todos/${todo_id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization:
-              'Bearer ' +
-              'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
-          },
-          body: JSON.stringify({
-            title: newTitle
-          })
+      await fetch(`https://gorest.co.in/public-api/todos/${todo_id}`, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer ' +
+            'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
         }
-      );
+      });
       getActualUserTodos(currentUserId);
     } catch (error) {
       console.log(error);
@@ -179,17 +169,37 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
                   marginTop: '2rem'
                 }}
               >
-                Zadanie: <Input onChange={inputHandler} value={list.title} />
+                <p>Zadanie: {list.title}</p>
               </div>
               <Button m={3} onClick={() => setTaskToComplete(list.id)}>
                 Zakończ zadanie
               </Button>
+            </div>
+          );
+        })}
 
-              <Button
-                m={3}
-                onClick={() => updateTask(list.id, taskTitle.current.title)}
+        {/* komponent */}
+        <Themed.h2>Zakończone zadania: </Themed.h2>
+        {userTodos.map((list) => {
+          if (!list.completed) {
+            return null;
+          }
+          return (
+            <div key={list.created_at}>
+              <div
+                sx={{
+                  minHeight: '10vh',
+                  width: '30vw',
+                  border: '1px solid black',
+                  padding: '16px',
+                  marginTop: '2rem'
+                }}
               >
-                Zaktualizuj Zadanie
+                <p> Zadanie: {list.title}</p>
+              </div>
+
+              <Button m={3} onClick={() => deleteTask(list.id)}>
+                Usuń Zadanie
               </Button>
             </div>
           );

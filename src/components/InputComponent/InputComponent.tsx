@@ -29,7 +29,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
   currentUserId,
   label,
   buttonText = 'Zaloguj się',
-  payload
+  payload,
 }) => {
   return (
     <Wrapper>

@@ -33,7 +33,6 @@ const LoginContainer: React.FC = () => {
       setUserTodos([...userTodoList]);
       setLoading(false);
       history.push('/homepage');
-      console.log(userTodoList);
     } catch (error) {
       setError(true);
     }
