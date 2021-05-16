@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { Label, Input, Button } from 'theme-ui';
+import { Label, Input, Button, Flex } from 'theme-ui';
 import useModal from '../../hooks/useModal';
 import { DataFromApi } from '../../models/dataFromApi';
 import { userTodosListAtom } from '../../recoilStore/atoms';
@@ -22,18 +22,28 @@ const SearchTask: React.FC<SearchTaskProps> = () => {
     handleOpenModal()
   };
 
-  
+
   const searchedTaskTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     taskToFind.current = e.target.value;
   };
 
   return (
-    <>
+    <Flex
+      sx={{
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // maxWidth: 768,
+        mx: 'auto',
+        px: 3,
+        py: 4,
+        borderTop: '5px solid #fc4a1a'
+      }}
+    >
       <Label
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: '16px'
@@ -56,12 +66,9 @@ const SearchTask: React.FC<SearchTaskProps> = () => {
         Szukaj
       </Button>
       {isOpen ? (
-        <TaskModal
-          rawContent={modalContent!}
-          handleClose={handleCloseModal}
-        />
+        <TaskModal rawContent={modalContent!} handleClose={handleCloseModal} />
       ) : null}
-    </>
+    </Flex>
   );
 };
 

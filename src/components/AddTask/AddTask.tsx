@@ -61,7 +61,7 @@ const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
           sx={{
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems:'center',
+            alignItems: 'center',
             maxWidth: 768,
             mx: 'auto',
             px: 3,
@@ -84,7 +84,8 @@ const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
                 textAlign: 'center',
                 color: 'primary',
                 backgroundColor: 'muted',
-                padding: '10px 15px'
+                padding: '10px 15px',
+                maxWidth: '30vw'
               }}
               onChange={inputHandler}
             />

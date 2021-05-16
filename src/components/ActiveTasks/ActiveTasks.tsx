@@ -43,10 +43,10 @@ const ActiveTasks: React.FC<ActiveTasksProps> = ({
       sx={{
         flexDirection: 'column',
         flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         alignItems: 'center',
         borderBottom: '5px solid #fc4a1a',
-        minHeight: '50%'
+        minHeight: '30vh'
       }}
     >
       <Themed.h2>Aktywne zadania: </Themed.h2>
@@ -56,21 +56,33 @@ const ActiveTasks: React.FC<ActiveTasksProps> = ({
         }
         return (
           <Flex
+            my={3}
             sx={{
               flexDirection: 'column',
               flexWrap: 'wrap',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              width: '90%',
+              borderRadius: '10px',
+              boxShadow: `
+  0 -2.4px 3.3px -3px rgba(0, 0, 0, 0.188),
+  0 5.4px 11.2px -3px rgba(0, 0, 0, 0.216),
+  0 26px 50px -3px rgba(0, 0, 0, 0.19)
+`
             }}
             key={list.created_at}
           >
             <div
               sx={{
                 padding: '25px',
-                margin: '1em'
+                margin: '1em',
+                maxWidth: '100%',
+                overflowWrap: 'break-word',
+                wordWrap: 'break-word',
+                hyphens: 'auto'
               }}
             >
-              <p >
+              <p>
                 <strong>Zadanie: </strong>
                 {list.title}
               </p>
