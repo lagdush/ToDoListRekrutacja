@@ -22,12 +22,6 @@ function App() {
           <Route path="/new-task" exact>
             <AddNewTask />
           </Route>
-          <Route path="/task-list" exact>
-            <p>Lista zadań</p>
-          </Route>
-          <Route path="/task-summary" exact>
-            <p>Statystyki</p>
-          </Route>
         </Navigation>
       </Switch>
     </ThemeProvider>

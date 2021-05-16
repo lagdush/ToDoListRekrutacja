@@ -68,7 +68,8 @@ const theme = {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      fontSize: 5
+      fontSize: 5,
+      textAlign: 'center'
     },
     h2: {
       color: 'text',
@@ -95,7 +96,7 @@ const theme = {
     },
     img: {
       maxWidth: '100%'
-    }
+    },
   }
 }
 

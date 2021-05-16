@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource theme-ui */
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect} from 'react';
 import {
   currentUserIdAtom,
   currentUserDataAtom,
@@ -10,17 +10,19 @@ import { useRecoilState } from 'recoil';
 import { Button, Flex, Input } from '@theme-ui/components';
 import { Themed } from '@theme-ui/mdx';
 import InputComponent from '../InputComponent/InputComponent';
+import TaskSummary from '../TaskSummary/TaskSummary';
+import SearchTask from '../SearchTask/SearchTask';
 
 type AddNewTaskProps = {};
 
 const AddNewTask: React.FC<AddNewTaskProps> = () => {
   const taskTitle = useRef({ title: '', completed: false });
-  const [task, setTask] = useState('');
   const [userTodos, setUserTodos] = useRecoilState(userTodosListAtom);
 
   const [currentUserId] = useRecoilState(currentUserIdAtom);
 
-  const [, setCurrentUserData] = useRecoilState(currentUserDataAtom);
+  const [currentUserData, setCurrentUserData] =
+    useRecoilState(currentUserDataAtom);
 
   const getActualUserTodos = async (userId: string | undefined) => {
     try {
@@ -74,7 +76,7 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
 
   const setTaskToComplete = async (todo_id: number) => {
     try {
-      const rawDataFromApi = await fetch(
+      await fetch(
         `https://gorest.co.in/public-api/todos/${todo_id}`,
         {
           method: 'PATCH',
@@ -96,9 +98,9 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
     }
   };
 
-  const setNewTaskTitle = async (todo_id: number, newTitle: string) => {
+  const updateTask = async (todo_id: number, newTitle: string) => {
     try {
-      const rawDataFromApi = await fetch(
+      await fetch(
         `https://gorest.co.in/public-api/todos/${todo_id}`,
         {
           method: 'PATCH',
@@ -141,7 +143,6 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
 
   return (
     <>
-      <Themed.h1 sx={{ textAlign: 'center' }}>Twoja Lista zadań: </Themed.h1>
       <Flex
         sx={{
           display: 'flex',
@@ -150,6 +151,10 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
           alignItems: 'center'
         }}
       >
+        <Themed.h1>{`Witaj ${currentUserData.name}`}</Themed.h1>
+        <TaskSummary />
+        <SearchTask />
+        <Themed.h2>Twoja Lista zadań: </Themed.h2>
         <InputComponent
           apiRequest={sendNewTask}
           inputHandler={inputHandler}
@@ -158,7 +163,7 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
           buttonText="Dodaj zadanie"
           payload={taskTitle.current}
         />
-        {/* oddzielny komponent */}
+        <Themed.h2>Aktywne zadania: </Themed.h2>
         {userTodos.map((list) => {
           if (list.completed) {
             return null;
@@ -177,14 +182,12 @@ const AddNewTask: React.FC<AddNewTaskProps> = () => {
                 Zadanie: <Input onChange={inputHandler} value={list.title} />
               </div>
               <Button m={3} onClick={() => setTaskToComplete(list.id)}>
-                Usuń Zadanie
+                Zakończ zadanie
               </Button>
 
               <Button
                 m={3}
-                onClick={() =>
-                  setNewTaskTitle(list.id, taskTitle.current.title)
-                }
+                onClick={() => updateTask(list.id, taskTitle.current.title)}
               >
                 Zaktualizuj Zadanie
               </Button>

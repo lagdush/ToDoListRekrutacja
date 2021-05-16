@@ -11,6 +11,7 @@ const LoginContainer: React.FC = () => {
   const [, setUserTodos] = useRecoilState(userTodosListAtom);
   const [currentUserId, setCurrentUserId] = useRecoilState(currentUserIdAtom);
   const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const history = useHistory();
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,17 +23,19 @@ const LoginContainer: React.FC = () => {
       if (!inputData) {
         return;
       }
+      setLoading(true);
       const rawDataFromApi = await fetch(
         `https://gorest.co.in//public-api/users/${inputData}/todos`
       );
-      setLoading(true);
+
       const dataFromApi = await rawDataFromApi.json();
       const userTodoList = dataFromApi.data;
       setUserTodos([...userTodoList]);
       setLoading(false);
       history.push('/homepage');
+      console.log(userTodoList);
     } catch (error) {
-      console.log(error);
+      setError(true);
     }
   };
 
@@ -46,13 +49,15 @@ const LoginContainer: React.FC = () => {
         transform: 'translate(-50%, -50%)'
       }}
     />
-  ) : (
+  ) : !error ? (
     <InputComponent
       apiRequest={getDataFromApi}
       inputHandler={inputHandler}
       currentUserId={currentUserId}
       label="Podaj swoje ID"
     />
+  ) : (
+    <div>PROBLEM</div>
   );
 };
 
