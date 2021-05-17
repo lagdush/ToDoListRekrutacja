@@ -2,13 +2,13 @@
 /* eslint-disable react/jsx-pascal-case */
 import { Themed } from '@theme-ui/mdx';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as NavLogo } from '../../assets/logo/Saly-26Logo.svg';
 
-type LogoProps = {};
+type LogoProps = { closeMenu?: () => void };
 
-const Logo: React.FC<LogoProps> = () => {
+const Logo: React.FC<LogoProps> = ({ closeMenu }) => {
   return (
     <NavLink
+      onClick={closeMenu}
       to="/homepage"
       exact
       sx={{
@@ -17,7 +17,6 @@ const Logo: React.FC<LogoProps> = () => {
         flexDirection: 'column'
       }}
     >
-      <NavLogo sx={{ height: '10vh', width: 'auto' }} />
       <Themed.h1>CheckIt</Themed.h1>
     </NavLink>
   );

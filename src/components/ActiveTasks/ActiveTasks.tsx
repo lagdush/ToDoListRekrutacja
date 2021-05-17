@@ -58,6 +58,7 @@ const ActiveTasks: React.FC<ActiveTasksProps> = ({
           <Flex
             my={3}
             sx={{
+              display: 'flex',
               flexDirection: 'column',
               flexWrap: 'wrap',
               justifyContent: 'center',

@@ -6,9 +6,6 @@ const theme = {
     25,
     32,
     64,
-    128,
-    256,
-    512
   ],
   fonts: {
     body: '"Roboto Condensed", sans-serif',
@@ -18,13 +15,12 @@ const theme = {
   fontSizes: [
     12,
     14,
-    16,
+    18,
     20,
     24,
     45,
     48,
     64,
-    96
   ],
   fontWeights: {
     body: 400,
@@ -56,7 +52,7 @@ const theme = {
   },
   text: {
      nav: { color: 'text', textDecoration: 'none',
-     fontSize: [0, 3]}
+     fontSize: [2, 3]}
   },
   styles: {
     root: {
@@ -93,13 +89,7 @@ const theme = {
       color: 'text',
       fontFamily: 'body',
       fontWeight: 'body',
-      lineHeight: 'body'
-    },
-    a: {
-      color: 'primary'
-    },
-    img: {
-      maxWidth: '100%'
+      lineHeight: 'body',
     },
   }
 }

@@ -7,49 +7,80 @@ import { useRecoilState } from 'recoil';
 import { todoAppNavigation } from '../../helpers/createNavigation/todoAppNavigation';
 import Logo from '../Logo/Logo';
 import Link from '../Link/Link';
+import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
+import { animated } from 'react-spring';
 
 type NavigationTemplateProps = {
   createNavigation: { name: string; route: string }[];
+  closeMenu?: () => void;
+  style?: any;
 };
 
-const NavigationTemplate: React.FC<NavigationTemplateProps> = ({
-  createNavigation
+export const NavigationTemplate: React.FC<NavigationTemplateProps> = ({
+  createNavigation,
+  closeMenu,
+  style
 }) => {
   const [, setUserTodos] = useRecoilState(userTodosListAtom);
 
   const logout = () => {
     setUserTodos([]);
+    if (closeMenu) {
+      closeMenu();
+    }
   };
   return (
-    <nav
+    <animated.nav
       sx={{
         position: 'sticky',
         top: '0',
         left: '0',
         padding: '16px',
-        backgroundColor: 'primary'
+        backgroundColor: 'primary',
+        '@media screen and (max-width: 850px)': {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          minHeight: '100%',
+          width: '100%',
+          zIndex: 1,
+          backgroundColor: 'secondary'
+        }
       }}
+      style={style}
     >
       <Flex
         sx={{
           width: '100%',
           justifyContent: 'space-around',
-          alignItems: 'center'
+          alignItems: 'center',
+          '@media screen and (max-width: 900px)': {
+            height: '100vh',
+            flexWrap: 'wrap',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            overflowY: 'hidden'
+          }
         }}
       >
-        <Logo />
+        <Logo closeMenu={closeMenu} />
         {createNavigation.map((link) => {
           return (
-            <Link key={link.route} navTo={link.route}>
+            <Link
+              style={style}
+              onClick={closeMenu}
+              key={link.route}
+              navTo={link.route}
+            >
               {link.name}
             </Link>
           );
         })}
-        <Link onClick={logout} navTo="/">
+        <Link style={style} onClick={logout} navTo="/">
           Wyloguj się
         </Link>
       </Flex>
-    </nav>
+    </animated.nav>
   );
 };
 
@@ -58,11 +89,11 @@ type NavigationProps = {
 };
 
 const Navigation: React.FC<NavigationProps> = ({ children }) => {
-  const matches = useMediaQuery('only screen and (max-width: 1024px)');
+  const matches = useMediaQuery('only screen and (max-width: 900px)');
   return (
     <div>
       {matches ? (
-        <p>HamburgerMenu</p>
+        <HamburgerMenu />
       ) : (
         <NavigationTemplate
           createNavigation={todoAppNavigation}

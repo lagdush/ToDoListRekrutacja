@@ -74,10 +74,12 @@ const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
           borderRight: '5px solid #fc4a1a',
           minHeight: '100vh',
           '@media screen and (max-width: 768px) and (orientation: portrait)': {
-            flexBasis: '60%'
+            flexBasis: '60%',
+            borderRight: 'none'
           },
           '@media screen and (max-width: 812px) and (orientation: landscape)': {
-            flexBasis: '90%'
+            flexBasis: '90%',
+            borderRight: 'none'
           }
         }}
       >

@@ -38,11 +38,15 @@ const ModalContainer: React.FC<ModalContainerProps> = ({
         transform: 'translate(-50%, -50%)',
         padding: '30px',
         minWidth: '300px',
-        maxWidth: '70vw',
+        maxWidth: '100vw',
         minHeight: '300px',
-        maxHeight: '80vh',
-        backgroundColor: 'secondary',
-        border: '10x solid black'
+        maxHeight: '100vh',
+        backgroundColor: 'muted',
+        '@media screen and (max-width: 768px)': {
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%'
+        }
       }}
       style={modalStyle}
     >

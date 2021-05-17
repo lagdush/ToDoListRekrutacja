@@ -5,7 +5,8 @@ import { useRecoilState } from 'recoil';
 import { Box, Button, Flex, Input, Label, Themed } from 'theme-ui';
 import {
   currentUserDataAtom,
-  currentUserIdAtom
+  currentUserIdAtom,
+  textState
 } from '../../recoilStore/atoms';
 
 type AddTaskProps = {
@@ -15,9 +16,12 @@ type AddTaskProps = {
 const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
   const taskTitle = useRef({ title: '', completed: false });
   const focus = useRef<HTMLInputElement>(null);
+  const [text, setText] = useRecoilState(textState);
   const [currentUserData] = useRecoilState(currentUserDataAtom);
+
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     taskTitle.current.title = e.target.value.toUpperCase();
+    setText(e.target.value);
   };
   const [currentUserId] = useRecoilState(currentUserIdAtom);
 
@@ -45,6 +49,7 @@ const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
         body: JSON.stringify(payload)
       });
       getActualUserTodos(currentUserId);
+      setText('');
     } catch (error) {
       console.log(error);
     }
@@ -101,13 +106,13 @@ const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
             Tytuł Zadania
             <Input
               ref={focus}
+              value={text}
               m={3}
               sx={{
                 textAlign: 'center',
                 color: 'primary',
                 backgroundColor: 'muted',
                 padding: '10px 15px',
-                // maxWidth: '30vw',
                 '@media screen and (max-width: 768px) and (orientation: portrait)':
                   {
                     width: '100%',
@@ -117,6 +122,7 @@ const AddTask: React.FC<AddTaskProps> = ({ getActualUserTodos }) => {
               onChange={inputHandler}
             />
           </Label>
+          <p> Liczba znaków: {text.length}</p>
           <Button
             variant="action"
             onClick={() => sendNewTask(currentUserId, taskTitle.current)}

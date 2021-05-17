@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
+/** @jsxImportSource theme-ui */
 import { Themed } from '@theme-ui/mdx';
 import React from 'react';
 import { useSpring } from 'react-spring';
@@ -20,12 +21,16 @@ const TaskModal: React.FC<TaskModalProps> = ({ rawContent, handleClose }) => {
   return (
     <ModalContainer modalStyle={modalStyle}>
       {rawContent.length === 0 ? (
-        <Themed.h1>Brak zadań pasujących do wyszukiwania</Themed.h1>
+        <Themed.h1 sx={{ color: 'primary' }}>
+          Brak zadań pasujących do wyszukiwania
+        </Themed.h1>
       ) : (
         <>
-          <Themed.h1>Znalezione zadania pasujące do wyszukiwania</Themed.h1>
+          <Themed.h1 sx={{ color: 'primary' }}>
+            Znalezione zadania pasujące do wyszukiwania
+          </Themed.h1>
           {rawContent.map((task, id) => (
-            <Themed.h2 key={task.created_at}>
+            <Themed.h2 sx={{ color: 'primary' }} key={task.created_at}>
               Zadanie {id + 1}: {task.title}
             </Themed.h2>
           ))}

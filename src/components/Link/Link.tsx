@@ -6,11 +6,13 @@ type LinkProps = {
   children: string;
   navTo: string;
   onClick?: () => void;
+  style?: any;
 };
 
-const Link: React.FC<LinkProps> = ({ navTo, children, onClick }) => {
+const Link: React.FC<LinkProps> = ({ navTo, children, onClick, style }) => {
   return (
     <NavLink
+      style={style}
       onClick={onClick}
       to={navTo}
       exact
@@ -21,6 +23,11 @@ const Link: React.FC<LinkProps> = ({ navTo, children, onClick }) => {
         transition: '.3s linear',
         '&:hover': {
           color: 'secondary'
+        },
+        '@media screen and (max-width: 900px)': {
+          '&:hover': {
+            color: 'primary'
+          }
         }
       }}
     >

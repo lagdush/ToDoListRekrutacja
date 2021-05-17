@@ -16,3 +16,8 @@ export const currentUserDataAtom = atom({
   key: 'userData',
   default: {} as UserDataFromApi
 });
+
+export const textState = atom({
+  key: 'textState',
+  default: '', 
+});
