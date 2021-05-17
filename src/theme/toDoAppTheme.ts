@@ -45,6 +45,7 @@ const theme = {
   buttons: {
     action: {
       fontWeight: 'bold',
+      textAlign: 'center',
       color: 'white',
       bg: 'primary',
       transition: '.5s linear',
@@ -68,7 +69,7 @@ const theme = {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      fontSize: 5,
+      fontSize: [5,6,7],
       textAlign: 'center',
     },
     h2: {

@@ -10,7 +10,11 @@ const HeaderHomePageLogin: React.FC = () => {
       sx={{
         gridColumn: '1 / 3',
         gridRow: '1 / -1',
-        placeSelf: 'center'
+        placeSelf: 'center',
+        '@media screen and (max-width: 768px)': {
+          gridColumn: '1 / -1',
+          gridRow: '1 / -1'
+        }
       }}
     >
       <div
@@ -22,7 +26,7 @@ const HeaderHomePageLogin: React.FC = () => {
           gridColumn: '1 / 3',
           gridRow: '1 / -1',
           justifySelf: 'stretch',
-          alignSelf: 'start'
+          alignSelf: 'start',
         }}
       >
         <Themed.h1>Check It</Themed.h1>

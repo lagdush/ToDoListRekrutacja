@@ -59,7 +59,11 @@ const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
   return (
     <Flex
       sx={{
-        flexWrap: 'wrap'
+        flexWrap: 'wrap-reverse',
+        '@media screen and (max-width: 768px) and (orientation: portrait)': {
+          justifyContent: 'center',
+          alignItems: 'center'
+        }
       }}
     >
       <Box
@@ -68,7 +72,13 @@ const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
           flexGrow: 1,
           flexBasis: '30%',
           borderRight: '5px solid #fc4a1a',
-          minHeight: '100vh'
+          minHeight: '100vh',
+          '@media screen and (max-width: 768px) and (orientation: portrait)': {
+            flexBasis: '60%'
+          },
+          '@media screen and (max-width: 812px) and (orientation: landscape)': {
+            flexBasis: '90%'
+          }
         }}
       >
         <ActiveTasks
@@ -85,13 +95,13 @@ const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
       <Box
         sx={{
           p: 3,
-          flexGrow: 9,
+          flexGrow: 2,
           flexBasis: 0,
           minWidth: 320
         }}
       >
-        <AddTask getActualUserTodos={getActualUserTodos} />
         <SearchTask />
+        <AddTask getActualUserTodos={getActualUserTodos} />
       </Box>
     </Flex>
   );

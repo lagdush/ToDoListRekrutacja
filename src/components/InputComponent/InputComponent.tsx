@@ -34,10 +34,9 @@ const InputComponent: React.FC<InputComponentProps> = ({
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: '16px'
+          fontSize: '16px',
         }}
       >
         {label}
@@ -52,10 +51,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
           onChange={inputHandler}
         />
       </Label>
-      <Button
-        variant="action"
-        onClick={() => apiRequest(currentUserId)}
-      >
+      <Button variant="action" onClick={() => apiRequest(currentUserId)}>
         {buttonText}
       </Button>
     </Wrapper>

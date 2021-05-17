@@ -10,7 +10,10 @@ const HomePageLogo: React.FC = () => {
         height: '90vh',
         gridColumn: '3/5',
         gridRow: '1/-1',
-        placeSelf: 'center '
+        placeSelf: 'center ',
+        '@media screen and (max-width: 768px)': {
+          display: 'none'
+        }
       }}
     />
   );
