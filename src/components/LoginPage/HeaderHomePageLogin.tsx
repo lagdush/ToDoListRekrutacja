@@ -29,8 +29,7 @@ const HeaderHomePageLogin: React.FC = () => {
           alignSelf: 'start',
         }}
       >
-        <Themed.h1>Check It</Themed.h1>
-        <Themed.h2>Do It</Themed.h2>
+        <Themed.h1>inProgress</Themed.h1>
         <LoginContainer />
       </div>
     </div>

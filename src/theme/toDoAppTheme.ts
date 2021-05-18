@@ -8,9 +8,9 @@ const theme = {
     64,
   ],
   fonts: {
-    body: '"Roboto Condensed", sans-serif',
-    heading: '"Roboto Condensed", sans-serif',
-    monospace: '"Roboto Slab", serif'
+    body: '"Lato", sans-serif',
+    heading: '"Poppins", sans-serif',
+    monospace: '"Poppins", serif'
   },
   fontSizes: [
     12,

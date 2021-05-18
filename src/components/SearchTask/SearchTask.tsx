@@ -15,8 +15,8 @@ const SearchTask: React.FC<SearchTaskProps> = () => {
   const [modalContent, setModalContent] = useState<DataFromApi[]>();
 
   const findTask = (title: string) => {
-    const searchTask = userTodos.filter(
-      (todo) => todo.title.toLowerCase() === title.toLowerCase()
+    const searchTask = userTodos.filter((todo) =>
+      todo.title.includes(title.toUpperCase())
     );
     setModalContent(searchTask);
     handleOpenModal();
@@ -45,7 +45,7 @@ const SearchTask: React.FC<SearchTaskProps> = () => {
           padding: '10px 15px',
           // maxWidth: '15vw',
           '@media screen and (max-width: 768px) and (orientation: portrait)': {
-            width: '60vw',
+            width: '60vw'
           }
         }}
         onChange={searchedTaskTitle}

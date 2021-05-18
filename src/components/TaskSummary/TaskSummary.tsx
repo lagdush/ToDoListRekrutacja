@@ -4,8 +4,8 @@ import { Flex } from '@theme-ui/components';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { userTodosListAtom } from '../../recoilStore/atoms';
-import { ReactComponent as WorkTask } from '../../assets/summary/Saly-19Work.svg';
-import { ReactComponent as Rest } from '../../assets/summary/Saly-10Work.svg';
+import { ReactComponent as WorkTask } from '../../assets/summary/Business, Technology, startup _ account, preferences, user, profile, settings, woman, graph, analysistask.svg';
+import { ReactComponent as Rest } from '../../assets/summary/leisure, sport _ meditation, meditate, relax, relaxation, yoga, man, happy, relaxednoTask.svg';
 import { Themed } from 'theme-ui';
 type TaskSummaryProps = {};
 
@@ -25,7 +25,7 @@ const TaskSummary: React.FC<TaskSummaryProps> = () => {
       <p>Do tej pory wykonałeś {completedTasks.length} zadania.</p>
       {activeTasks.length === 0 ? (
         <>
-          <p sx={{ textAlign: 'justify' }}>
+          <p sx={{ textAlign: 'justify', marginBottom: '20px' }}>
             Możesz odpocząć, nie masz żadnych pilnych zadań do wykonania.
           </p>
           <Rest
@@ -43,7 +43,7 @@ const TaskSummary: React.FC<TaskSummaryProps> = () => {
             alignItems: 'center'
           }}
         >
-          <p sx={{ textAlign: 'justify' }}>
+          <p sx={{ textAlign: 'justify', marginBottom: '20px' }}>
             Aktualnie masz {activeTasks.length} aktywnych zadań do wykonania.
           </p>
           <WorkTask

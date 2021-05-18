@@ -11,7 +11,7 @@ const LoginContainer: React.FC = () => {
   const [, setUserTodos] = useRecoilState(userTodosListAtom);
   const [currentUserId, setCurrentUserId] = useRecoilState(currentUserIdAtom);
   const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+
   const history = useHistory();
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ const LoginContainer: React.FC = () => {
       setLoading(false);
       history.push('/homepage');
     } catch (error) {
-      setError(true);
+      console.log(error);
     }
   };
 
@@ -48,15 +48,13 @@ const LoginContainer: React.FC = () => {
         transform: 'translate(-50%, -50%)'
       }}
     />
-  ) : !error ? (
+  ) : (
     <InputComponent
       apiRequest={getDataFromApi}
       inputHandler={inputHandler}
       currentUserId={currentUserId}
       label="Podaj swoje ID"
     />
-  ) : (
-    <div>PROBLEM</div>
   );
 };
 

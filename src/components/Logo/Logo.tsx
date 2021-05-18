@@ -17,7 +17,7 @@ const Logo: React.FC<LogoProps> = ({ closeMenu }) => {
         flexDirection: 'column'
       }}
     >
-      <Themed.h1>CheckIt</Themed.h1>
+      <Themed.h1>inProgress</Themed.h1>
     </NavLink>
   );
 };

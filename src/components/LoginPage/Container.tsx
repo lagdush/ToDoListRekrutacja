@@ -14,7 +14,8 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
         gridTemplateColumns: 'repeat(4, minmax(20%, 1fr))',
         gridTemplateRows: 'repeat(4, minmax(20%, 1fr))',
         justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        background: `linear-gradient(rgb(66, 151, 242), rgb(118, 132, 245), rgb(152, 110, 249), rgb(179, 79, 252), rgb(202, 12, 255))`
       }}
     >
       {children}

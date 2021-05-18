@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { ReactComponent as HomeLogo } from '../../assets/homePage/Saly-12HomePageLogo.svg';
+import { ReactComponent as HomeLogo } from '../../assets/homePage/Startup, Success, technology, growth _  innovation, idea, thought, woman, statistics.svg';
 
 const HomePageLogo: React.FC = () => {
   return (
