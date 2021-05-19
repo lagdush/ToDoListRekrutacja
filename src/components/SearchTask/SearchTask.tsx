@@ -6,9 +6,8 @@ import { DataFromApi } from '../../models/dataFromApi';
 import { userTodosListAtom } from '../../recoilStore/atoms';
 import TaskModal from '../TaskModal/TaskModal';
 
-type SearchTaskProps = {};
 
-const SearchTask: React.FC<SearchTaskProps> = () => {
+const SearchTask: React.FC = () => {
   const [userTodos] = useRecoilState(userTodosListAtom);
   const taskToFind = useRef('');
   const { isOpen, handleCloseModal, handleOpenModal } = useModal();

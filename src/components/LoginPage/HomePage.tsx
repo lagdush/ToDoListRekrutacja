@@ -3,9 +3,8 @@ import Container from './Container';
 import HeaderHomePageLogin from './HeaderHomePageLogin';
 import HomePageLogo from './HomePageLogo';
 
-type LoginPageProps = {};
 
-const LoginPage: React.FC<LoginPageProps> = () => {
+const LoginPage: React.FC = () => {
   return (
     <Container>
       <HomePageLogo />

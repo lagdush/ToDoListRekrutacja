@@ -14,9 +14,8 @@ import ActiveTasks from '../../components/ActiveTasks/ActiveTasks';
 import InactiveTasks from '../../components/InactiveTasks/InactiveTasks';
 import { Box } from 'theme-ui';
 
-type UserTaskManagerProps = {};
 
-const UserTaskManager: React.FC<UserTaskManagerProps> = () => {
+const UserTaskManager: React.FC = () => {
   const [userTodos, setUserTodos] = useRecoilState(userTodosListAtom);
   const [currentUserId] = useRecoilState(currentUserIdAtom);
   const [, setCurrentUserData] = useRecoilState(currentUserDataAtom);

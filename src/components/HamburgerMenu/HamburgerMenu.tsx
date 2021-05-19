@@ -5,9 +5,9 @@ import { Flex } from 'theme-ui';
 import { ReactComponent as Menu } from '../../assets/hamburgerIco/bars-solid.svg';
 import { todoAppNavigation } from '../../helpers/createNavigation/todoAppNavigation';
 import { NavigationTemplate } from '../Navigation/Navigation';
-type HamburgerMenuProps = {};
 
-const HamburgerMenu: React.FC<HamburgerMenuProps> = () => {
+
+const HamburgerMenu: React.FC = () => {
   const [menu, showMenu] = useState(false);
   const menuStyles = useSpring({
     transform: menu ? `translateY(0)` : `translateY(-100%)`,

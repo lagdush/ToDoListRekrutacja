@@ -7,9 +7,9 @@ import { userTodosListAtom } from '../../recoilStore/atoms';
 import { ReactComponent as WorkTask } from '../../assets/summary/Business, Technology, startup _ account, preferences, user, profile, settings, woman, graph, analysistask.svg';
 import { ReactComponent as Rest } from '../../assets/summary/leisure, sport _ meditation, meditate, relax, relaxation, yoga, man, happy, relaxednoTask.svg';
 import { Themed } from 'theme-ui';
-type TaskSummaryProps = {};
 
-const TaskSummary: React.FC<TaskSummaryProps> = () => {
+
+const TaskSummary: React.FC = () => {
   const [userTodos] = useRecoilState(userTodosListAtom);
   const completedTasks = userTodos.filter((todo) => todo.completed === true);
   const activeTasks = userTodos.filter((todo) => todo.completed === false);
