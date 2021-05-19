@@ -17,7 +17,6 @@ _Wykorzystane technologie:_
 - **recoil** do zadządzania stanem aplikacji
 - **theme ui** to tworzenia styli w aplikacji
 
-id użytkownika testowego: 1672, 56.
 
 
 _Functionality:_
@@ -37,4 +36,3 @@ _Technologies used:_
 - **recoil** a state management library for React
 - **theme ui** a library for creating themeable user interfaces based on constraint-based design principles
 
-test user id: 1672, 56.

@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import UserTaskManager from './UserTaskManager/UserTaskManager';
 import LoginPage from '../components/LoginPage/HomePage';
 import TaskSummary from '../components/TaskSummary/TaskSummary';
+import UserRegister from '../components/UserRegister/UserRegister';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <LoginPage />
+        </Route>
+        <Route path="/registration" exact>
+          <UserRegister />
         </Route>
         <Navigation>
           <Route path="/homepage">

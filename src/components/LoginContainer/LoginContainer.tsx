@@ -4,14 +4,16 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Spinner } from '@theme-ui/components';
-import { userTodosListAtom, currentUserIdAtom } from '../../recoilStore/atoms';
+import {
+  userTodosListAtom,
+  currentUserIdAtom,
+} from '../../recoilStore/atoms';
 import InputComponent from '../InputComponent/InputComponent';
 
 const LoginContainer: React.FC = () => {
   const [, setUserTodos] = useRecoilState(userTodosListAtom);
   const [currentUserId, setCurrentUserId] = useRecoilState(currentUserIdAtom);
   const [isLoading, setLoading] = useState(false);
-
   const history = useHistory();
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,12 +51,14 @@ const LoginContainer: React.FC = () => {
       }}
     />
   ) : (
-    <InputComponent
-      apiRequest={getDataFromApi}
-      inputHandler={inputHandler}
-      currentUserId={currentUserId}
-      label="Podaj swoje ID"
-    />
+    <>
+      <InputComponent
+        apiRequest={getDataFromApi}
+        inputHandler={inputHandler}
+        currentUserId={currentUserId}
+        label="Podaj swoje ID"
+      />
+    </>
   );
 };
 

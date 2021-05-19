@@ -19,5 +19,5 @@ export const currentUserDataAtom = atom({
 
 export const textState = atom({
   key: 'textState',
-  default: '', 
+  default: '',
 });

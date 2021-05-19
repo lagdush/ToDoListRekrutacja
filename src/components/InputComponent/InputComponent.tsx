@@ -1,6 +1,8 @@
+/** @jsxImportSource theme-ui */
 import React from 'react';
 import { Button, Input, Label } from '@theme-ui/components';
 import Wrapper from './Wrapper';
+import { useHistory } from 'react-router';
 
 type GetUserDataFN = (
   inputData: string | undefined,
@@ -26,8 +28,9 @@ const InputComponent: React.FC<InputComponentProps> = ({
   apiRequest,
   currentUserId,
   label,
-  buttonText = 'Zaloguj się',
+  buttonText = 'Zaloguj się'
 }) => {
+  const history = useHistory();
   return (
     <Wrapper>
       <Label
@@ -36,7 +39,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: '16px',
+          fontSize: '16px'
         }}
       >
         {label}
@@ -51,9 +54,20 @@ const InputComponent: React.FC<InputComponentProps> = ({
           onChange={inputHandler}
         />
       </Label>
-      <Button variant="action" onClick={() => apiRequest(currentUserId)}>
+      <Button
+        variant="action"
+        onClick={() => apiRequest(currentUserId)}
+      >
         {buttonText}
       </Button>
+      <p
+        sx={{ cursor: 'pointer' }}
+        onClick={() => {
+          history.push('/registration');
+        }}
+      >
+        Rejestracja
+      </p>
     </Wrapper>
   );
 };
