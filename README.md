@@ -8,6 +8,7 @@ _Funkcjonalności:_
 - ukrywanie zakończonych zadań
 - możliwość wyszukiwania notatki po treści
 - fetch API, komunikacja z serwerem(https://gorest.co.in)
+- możliwość rejestracji nowego użytkownika oraz logowania
 
 _Wykorzystane technologie:_
 
@@ -17,8 +18,6 @@ _Wykorzystane technologie:_
 - **recoil** do zadządzania stanem aplikacji
 - **theme ui** to tworzenia styli w aplikacji
 
-
-
 _Functionality:_
 
 - dynamic update of the number of characters
@@ -27,6 +26,7 @@ _Functionality:_
 - hiding completed tasks
 - the ability to search for a note by content
 - fetch API, communication with the server (https://gorest.co.in)
+- the ability to register the user and log in
 
 _Technologies used:_
 
@@ -35,4 +35,3 @@ _Technologies used:_
 - **react router** to switch between application views
 - **recoil** a state management library for React
 - **theme ui** a library for creating themeable user interfaces based on constraint-based design principles
-
