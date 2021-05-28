@@ -22,7 +22,7 @@ const EditTodoModal: React.FC<EditTodoModalProps> = ({
   updateTask,
   rawContent
 }) => {
-  const data = moment(rawContent.created_at).format('LL');
+  const data = moment(rawContent.created_at).format('DD/MM/YYYY, H:mm');
   const taskTitle = useRef('');
   const modalStyle = useSpring({
     to: { opacity: 1 },
