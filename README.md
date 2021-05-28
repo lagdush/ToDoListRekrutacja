@@ -6,6 +6,7 @@ _Funkcjonalności:_
 - odznaczania wykonania zadania
 - licznik zakończonych i niezakończonych zadań
 - ukrywanie zakończonych zadań
+- możliwości aktualizacji zadania
 - możliwość wyszukiwania notatki po treści
 - fetch API, komunikacja z serwerem(https://gorest.co.in)
 - możliwość rejestracji nowego użytkownika oraz logowania
@@ -24,6 +25,7 @@ _Functionality:_
 - marking the completion of the task
 - Completed and Unfinished Tasks counter
 - hiding completed tasks
+- update task
 - the ability to search for a note by content
 - fetch API, communication with the server (https://gorest.co.in)
 - the ability to register the user and log in
