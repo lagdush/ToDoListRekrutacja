@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import {
   currentUserIdAtom,
   currentUserDataAtom,
-  userTodosListAtom
+  userTodosListAtom,
 } from '../../recoilStore/atoms';
 import { useRecoilState } from 'recoil';
 import { Flex } from '@theme-ui/components';

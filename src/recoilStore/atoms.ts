@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { DataFromApi, UserDataFromApi} from '../models/dataFromApi';
+import { CurrentTodo, DataFromApi, UserDataFromApi} from '../models/dataFromApi';
 
 
 export const userTodosListAtom = atom({
@@ -20,4 +20,14 @@ export const currentUserDataAtom = atom({
 export const textState = atom({
   key: 'textState',
   default: '',
+});
+
+export const currentTODO = atom({
+  key: 'todo',
+  default: {} as CurrentTodo ,
+});
+
+export const currentTODOvalue = atom({
+  key: 'todo',
+  default: '' ,
 });

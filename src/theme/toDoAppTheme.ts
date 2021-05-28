@@ -86,7 +86,7 @@ const theme = {
       textAlign: 'center'
     },
     p: {
-      color: 'text',
+      color: 'primary',
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',

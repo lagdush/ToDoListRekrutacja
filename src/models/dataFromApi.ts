@@ -21,3 +21,12 @@ export interface UserDataFromApi {
         created_at: string,
         updated_at: string
 }
+
+export interface CurrentTodo {
+  completed: boolean,
+  created_at: string,
+  id: number
+  title: string
+  updated_at: string
+  user_id: number
+}

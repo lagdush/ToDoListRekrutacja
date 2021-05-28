@@ -1,8 +1,12 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource theme-ui */
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import { Themed, Button, Flex } from 'theme-ui';
+import useModal from '../../hooks/useModal';
 import { DataFromApi } from '../../models/dataFromApi';
+import { currentTODO } from '../../recoilStore/atoms';
+import EditTodoModal from '../EditTodoModal/EditTodoModal';
 
 type ActiveTasksProps = {
   getActualUserTodos: (userId: string | undefined) => Promise<void>;
@@ -15,7 +19,10 @@ const ActiveTasks: React.FC<ActiveTasksProps> = ({
   userTodos,
   currentUserId
 }) => {
-  const setTaskToComplete = async (todo_id: number) => {
+  const [todo, setTodo] = useRecoilState(currentTODO);
+  const { isOpen, handleCloseModal, handleOpenModal } = useModal();
+
+  const updateTask = async (todo_id?: number, payload?: any) => {
     try {
       await fetch(`https://gorest.co.in/public-api/todos/${todo_id}`, {
         method: 'PATCH',
@@ -26,14 +33,29 @@ const ActiveTasks: React.FC<ActiveTasksProps> = ({
             'Bearer ' +
             'aa8db0033f95a11b46894138676127a04929eb22c0d89465684c124d1194ea6e'
         },
-        body: JSON.stringify({
-          completed: true
-        })
+        body: JSON.stringify(payload)
       });
       getActualUserTodos(currentUserId);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getTask = async (todo_id: number) => {
+    try {
+      const rawData = await fetch(
+        `https://gorest.co.in/public-api/todos/${todo_id}`
+      );
+      const { data } = await rawData.json();
+      setTodo(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editTask = (todo_id: number) => {
+    getTask(todo_id);
+    handleOpenModal();
   };
 
   return (
@@ -88,9 +110,29 @@ const ActiveTasks: React.FC<ActiveTasksProps> = ({
                 {list.title}
               </p>
             </div>
-            <Button m={'1em'} p={2} onClick={() => setTaskToComplete(list.id)}>
-              Zakończ zadanie
-            </Button>
+            <Flex>
+              <Button
+                m={'1em'}
+                p={2}
+                onClick={() =>
+                  updateTask(list.id, {
+                    completed: true
+                  })
+                }
+              >
+                Zakończ zadanie
+              </Button>
+              <Button m={'1em'} p={2} onClick={() => editTask(list.id)}>
+                Edytuj zadanie
+              </Button>
+            </Flex>
+            {isOpen ? (
+              <EditTodoModal
+                updateTask={updateTask}
+                rawContent={todo}
+                handleClose={handleCloseModal}
+              />
+            ) : null}
           </Flex>
         );
       })}
