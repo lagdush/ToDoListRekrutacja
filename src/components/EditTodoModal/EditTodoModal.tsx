@@ -76,7 +76,7 @@ const EditTodoModal: React.FC<EditTodoModalProps> = ({
           <Button mx={2} onClick={handleClose}>
             Zamknij
           </Button>
-          <Button mx={2} onClick={() => update({ title: taskTitle.current })}>
+          <Button mx={2} onClick={() => update({ title: taskTitle.current.toUpperCase() })}>
             Uaktualnij
           </Button>
         </Flex>
